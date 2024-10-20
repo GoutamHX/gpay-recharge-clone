@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home';
 import RechargePage from './Components/RechargePage';
-import { SpeedInsights } from '@vercel/speed-insights/react';
+import React, { Suspense } from 'react';
+
+const SpeedInsights = React.lazy(() => import('@vercel/speed-insights/react').then(module => ({ default: module.SpeedInsights })));
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/recharge" element={<RechargePage />} />
         </Routes>
-        <SpeedInsights />
+        <Suspense fallback={<div>Loading Speed Insights...</div>}>
+          <SpeedInsights />
+        </Suspense>
       </BrowserRouter>
     </div>
   );
