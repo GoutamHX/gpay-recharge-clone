@@ -8,6 +8,23 @@ const RechargePage = () => {
     const location = useLocation();
     const { mobileNumber, sim } = location.state || {};
 
+    const handleRecharge = (amount) => {
+         
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (!isMobile) {
+      alert("Recharge payment is only available on mobile devices. Please try on your mobile.");
+      return;
+    }
+        const upiId = "mrgoutam08@ybl"; // Replace with your UPI ID
+        const payeeName = "Prepaid Recharge";     // Replace with payee name
+        const transactionNote = `Recharge for Diwali Offer +91${mobileNumber}`; // Customize payment note
+
+        const upiDeepLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${amount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+     
+         window.location.href = upiDeepLink;
+      };
+
     // Mapping for SIM icons and details
     const simDetails = {
         Jio: {
@@ -126,7 +143,7 @@ const RechargePage = () => {
                                         height={28} 
                                     />    
                                      </div>
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3"  onClick={() => handleRecharge(299)}>Recharge</button>
                            </div>
                          </div>
                      </div>
@@ -174,7 +191,7 @@ const RechargePage = () => {
                                     
                                 </div>
 
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(333)}>Recharge</button>
                             </div>
                         </div>
                     </div>
@@ -230,7 +247,7 @@ const RechargePage = () => {
                                     
                                 </div>
 
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(399)}>Recharge</button>
                             </div>
                         </div>
                     </div>
@@ -286,7 +303,7 @@ const RechargePage = () => {
                                         height={25} 
                                     />
                                 </div>
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(199)}>Recharge</button>
                             </div>                      
                         </div>
                     </div>
@@ -347,7 +364,7 @@ const RechargePage = () => {
                                         height={25} 
                                     />
                                 </div>
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(459)}>Recharge</button>
                             </div>                      
                         </div>
                     </div>
@@ -428,7 +445,7 @@ const RechargePage = () => {
                                         height={25} 
                                     />
                                 </div>
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(1499)}>Recharge</button>
                             </div>                      
                         </div>
                     </div>
@@ -475,7 +492,7 @@ const RechargePage = () => {
                                         height={25} 
                                     />
                                 </div>
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(225)}>Recharge</button>
                             </div>                      
                         </div>
                     </div>
@@ -544,7 +561,7 @@ const RechargePage = () => {
                                     />
                                      
                                 </div>
-                                <button className="btn btn-primary w-100 mt-3">Recharge</button>
+                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(499)}>Recharge</button>
                             </div>                      
                         </div>
                     </div>
