@@ -2,8 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RiMenuFill } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
-import { Link, useLocation } from 'react-router-dom';
-import netflix from '../img/pngegg.jpg' 
+import { Link, useLocation } from 'react-router-dom'; 
 
 const RechargePage = () => {
     const location = useLocation();
@@ -208,11 +207,11 @@ const RechargePage = () => {
                                         height={25} 
                                     />
                                     <img 
-                                        src={netflix} 
+                                        src="https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png" 
                                         alt="Netflix" 
                                         className='rounded mx-1'
-                                        width={26} 
-                                        height={28} 
+                                        width={25} 
+                                        height={25} 
                                     />
                                        <img 
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s"
@@ -379,12 +378,12 @@ const RechargePage = () => {
                                         width={24} 
                                         height={25} 
                                     />
-                                    <img 
-                                        src={netflix} 
+                                     <img 
+                                        src="https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png" 
                                         alt="Netflix" 
                                         className='rounded mx-1'
-                                        width={26} 
-                                        height={28} 
+                                        width={25} 
+                                        height={25} 
                                     />
                                        <img 
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s"
@@ -507,12 +506,12 @@ const RechargePage = () => {
                                         width={24} 
                                         height={25} 
                                     />
-                                    <img 
-                                        src={netflix} 
+                                      <img 
+                                        src="https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png" 
                                         alt="Netflix" 
                                         className='rounded mx-1'
-                                        width={26} 
-                                        height={28} 
+                                        width={25} 
+                                        height={25} 
                                     />
                                        <img 
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s"
