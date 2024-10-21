@@ -4,9 +4,10 @@ import { FaUserCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import img from '../img/footerImg.png'
 const Home = () => {
-    const [time, setTime] = useState(15 * 60); // 15 minutes in seconds
+    const [time, setTime] = useState(60 * 60); // 15 minutes in seconds
     const [mobileNumber, setMobileNumber] = useState(''); // Start with an empty string
     const [sim, setSim] = useState('jio');
+    const [msg, setMsg] = useState('');
     const navigate = useNavigate();
 
     const handleRecharge = () => {
@@ -31,6 +32,18 @@ const Home = () => {
   
       return () => clearInterval(intervalId);
     }, []);
+    const handleMob = () => {
+      const mobileNumberRegex = /^[6-9]\d{9}$/; // Regex for Indian mobile number
+  
+      // Validate input against the regex
+      if (mobileNumberRegex.test(mobileNumber) || mobileNumber === ''&&mobileNumber.length <= 10) { 
+          setMsg(''); // Clear error message if valid or empty
+          handleRecharge()
+      }
+      else{
+        setMsg('Invalid Mobile Number');
+      }
+  };
   
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -98,7 +111,7 @@ const Home = () => {
                     </div>
                     <div className="border border-primary rounded px-2 py-1">
                         <input type="radio" id="bsnl" name="sim" className="me-1"  onChange={() => setSim('Bsnl')} />
-                        <label htmlFor="bsnl">Bsnl</label>
+                        <label htmlFor="bsnl">BSNL</label>
                     </div>
                 </div>
   <div className="mt-3">
@@ -107,15 +120,20 @@ const Home = () => {
   type="number" 
   placeholder="+91 xxxxx xxxxx" 
   className="form-control" 
-  value={mobileNumber} 
-  onChange={(e) => setMobileNumber(e.target.value)} // Use onChange to capture input
+  // value={mobileNumber} 
+  // onChange={(e) => handleMob(e)} // Use onChange to capture input
+  onChange={(e)=>setMobileNumber(e.target.value)} // Use onChange to capture input
   required 
 />
+<div className='text-danger text-start'>{
+  msg
+}</div>
+
   </div>
         <div className="mt-4">
         <button 
         className="btn btn-primary w-100 py-3 fw-bold" 
-        onClick={handleRecharge} 
+        onClick={handleMob} 
         disabled={mobileNumber.length !== 10} >
     Recharge
  </button>
