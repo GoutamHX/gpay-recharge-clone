@@ -102,6 +102,7 @@ const RechargePage = () => {
             oldAmount:666,
             validity: '70 days',
             data: '1.5 GB/day',
+            True5G:"Unlimited True 5G",
             subscriptions: [
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png",
                 "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png",
@@ -117,6 +118,7 @@ const RechargePage = () => {
             oldAmount:799,
             validity: '84 days',
             data: '1.5 GB/day',
+            True5G:"Unlimited True 5G",
             subscriptions: [
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png",
                    "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png",
@@ -133,6 +135,7 @@ const RechargePage = () => {
             oldAmount:399,
             validity: '28 days',
             data: '2.5 GB/day',
+            True5G:"Unlimited True 5G",
             subscriptions: [
                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
                    "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
@@ -149,6 +152,7 @@ const RechargePage = () => {
             oldAmount:999,
             validity: '98 days',
             data: '2 GB/day',
+            True5G:"Unlimited True 5G",
             subscriptions: [
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
                 "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
@@ -166,6 +170,7 @@ const RechargePage = () => {
             oldAmount:3599,
             validity: '365 days',
             data: '2.5 GB/day',
+            True5G:"Unlimited True 5G",
             subscriptions: [
                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
                 "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
@@ -185,6 +190,7 @@ const RechargePage = () => {
             oldAmount:449,
             validity: '28 days',
             data: '3 GB/day',
+            True5G:"Unlimited True 5G",
             subscriptions: [
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
                 "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
@@ -199,6 +205,7 @@ const RechargePage = () => {
             oldAmount:1199,
             validity: '84 days',
             data: '3 GB/day',
+            True5G:"Unlimited True 5G",
             subscriptions: [
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
                 "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
@@ -285,7 +292,7 @@ const RechargePage = () => {
                             <p>DATA: <strong> {val.data} </strong></p>
                             <p>Voice: <strong> Unlimited </strong></p>
                             <p>SMS: <strong> 100/day </strong></p>
-                       
+                            <strong className='text-danger'> {val.True5G}</strong> 
 
                             {/* Subscriptions Section */}
                             <p className="mb-2"><strong>Subscriptions:</strong></p>
