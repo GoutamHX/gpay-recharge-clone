@@ -1,31 +1,45 @@
-import React from 'react';
+import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RiMenuFill } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom'; 
+import { QRCodeSVG } from 'qrcode.react';
+
+
 
 const RechargePage = () => {
     const location = useLocation();
-    const { mobileNumber, sim } = location.state || {};
+    const { mobileNumber, sim } = location.state || {}; 
+  
+    const [amount, setAmount] = useState('');  
+    const [show, setShow] = useState("");
+    const [showQRCode, setShowQRCode] = useState(false); 
+    // UPI details (replace with your actual details)
+    const upiId = "mrgoutam08@ybl";  // Replace with your UPI ID
+    const payeeName = "Prepaid Recharge";  // Replace with your payee name (this could be dynamic)
 
-    const handleRecharge = (amount) => {
-         
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    // Customize transaction note
+    const transactionNote = `Diwali Dhamaka Recharge ${mobileNumber || ''}`;
+
+    // Handle the "Recharge" button click
+    const handleRecharge = (selectedAmount, index) => {
+        if (!selectedAmount || selectedAmount <= 0) {
+            alert('Please enter a valid amount.');
+            return;
+        }
+  
+        // Generate the UPI URL
+        const upiURL = `upi://pay?pa=${upiId}&pn=Prepaid%20Recharge%20for%20${mobileNumber || 'Unknown'}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
     
-    if (!isMobile) {
-      alert("Recharge payment is only available on mobile devices. Please try on your mobile.");
-      return;
-    }
-        const upiId = "mrgoutam08@ybl"; // Replace with your UPI ID
-        const payeeName = "Prepaid Recharge";     // Replace with payee name
-        const transactionNote = `Recharge for Diwali Offer +91${mobileNumber}`; // Customize payment note
-
-        const upiDeepLink = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${amount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
-     
-         window.location.href = upiDeepLink;
-      };
-
-    // Mapping for SIM icons and details
+        // Log the generated URL for debugging
+        console.log("Generated UPI URL:", upiURL);
+        
+        // Set the recharge amount and show the QR code
+        setAmount(selectedAmount);
+        setShowQRCode(true);  // Make sure QR code is shown
+        setShow(index);  // Set the selected index to show the QR code for that index
+    };
+   
     const simDetails = {
         Jio: {
             icon: "https://rilstaticasset.akamaized.net/sites/default/files/2024-03/JPEG_Download_Jio-Logo-Colour-Navi-Midnight.jpg",
@@ -45,6 +59,137 @@ const RechargePage = () => {
         }
     };
     const selectedSim = sim && simDetails[sim] ? simDetails[sim] : { name: "Jio Prepaid" };
+    const rechargeOptions = [
+        {
+            id: 1,
+            title: 'Exclusive 50% off',
+            amount: 11,
+            oldAmount :579,
+            validity: '56 days',
+            data: '1.5 GB/day',
+            subscriptions: [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png",
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png",
+                "https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
+            ]
+        },
+        {
+            id: 2,
+            title:'Exclusive 50% off',
+            amount: 333,
+            oldAmount:666,
+            validity: '70 days',
+            data: '1.5 GB/day',
+            subscriptions: [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png",
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png",
+                "https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI",
+                 "https://toppng.com/uploads/preview/zee5-movies-tv-shows-live-tv-originals-zee5-app-download-free-11562989787ccp8imbuyt.png"
+               
+            ]
+        },
+        {
+            id: 3,
+            title:'TRENDING',
+            amount: 399,
+            oldAmount:799,
+            validity: '84 days',
+            data: '1.5 GB/day',
+            subscriptions: [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png",
+                   "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png",
+                "https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI",
+                 "https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s",
+               
+            ]
+        },
+        {
+            id: 4,
+            title:'POPULAR PLAN',
+            amount: 199,
+            oldAmount:399,
+            validity: '28 days',
+            data: '2.5 GB/day',
+            subscriptions: [
+               "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
+                   "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
+                "https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI", //jiosavn
+                "https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png", //sony 
+               " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s" //hostar
+
+            ]
+        },
+        {
+            id: 5,
+            title:'BEST 5G PLAN',
+            amount: 459,
+            oldAmount:999,
+            validity: '98 days',
+            data: '2 GB/day',
+            subscriptions: [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
+                "https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI", //jiosavn
+                " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s", //hostar
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s", //FC
+               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s" // Prime
+
+            ]
+        },
+        {
+            id: 6,
+            title:'SPECIAL',
+            amount: 1499,
+            oldAmount:3599,
+            validity: '365 days',
+            data: '2.5 GB/day',
+            subscriptions: [
+               "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
+                "https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI", //jiosavn
+                " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s", //hostar
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s", //FC
+               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s" ,// Prime
+                "https://toppng.com/uploads/preview/zee5-movies-tv-shows-live-tv-originals-zee5-app-download-free-11562989787ccp8imbuyt.png" ,// Zee
+               " https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png", // Netflix
+               "https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png" // Sony
+            ]
+        },
+        {
+            id: 7,
+            title:'Exclusive 50% off',
+            amount: 225,
+            oldAmount:449,
+            validity: '28 days',
+            data: '3 GB/day',
+            subscriptions: [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
+                " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s", //hostar
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s", //FC
+            ]
+        },
+        {
+            id: 8,
+            title:'POPULAR PLAN',
+            amount: 449,
+            oldAmount:1199,
+            validity: '84 days',
+            data: '3 GB/day',
+            subscriptions: [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png", //ji tv 
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png", // jio cenima
+                "https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI", //jiosavn
+                " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s", //hostar
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s", //FC
+
+                "https://toppng.com/uploads/preview/zee5-movies-tv-shows-live-tv-originals-zee5-app-download-free-11562989787ccp8imbuyt.png" ,// Zee
+               " https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png", // Netflix
+
+            ]
+        },
+    ];
 
     return (
         <div className="container-fluid"  style={{background:"aliceblue"}}>
@@ -105,475 +250,68 @@ const RechargePage = () => {
             </div>
 
             {/* Recharge Options */}
+            
             <div className="row justify-content-center">
-               
+            {
+                rechargeOptions.map((val,index)=>(
                     <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">Exclusive 50% Off </span>
-                                <h4 className="mt-2 text-primary">₹299 <small> <del>₹579</del></small></h4>
-                                <p>VALIDITY: <strong>56 days </strong></p>
-                                <p>DATA: <strong> 1.5 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                           
+                    <div className="card shadow">
+                        <div className="card-body">
+                            <span className="badge bg-danger text-white"> {val.title}</span>
+                            <h4 className="mt-2 text-primary">₹{val.amount} <small> <del>₹{val.oldAmount}</del></small></h4>
+                            <p>VALIDITY: <strong>{val.validity} </strong></p>
+                            <p>DATA: <strong> {val.data} </strong></p>
+                            <p>Voice: <strong> Unlimited </strong></p>
+                            <p>SMS: <strong> 100/day </strong></p>
+                       
 
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                                  
-                                      <img 
-                                        src="https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
-                                        alt="JioSavan" 
-                                        className='rounded mx-1'
-                                        width={27} 
-                                        height={28} 
-                                    />    
-                                     </div>
-                                <button className="btn btn-primary w-100 mt-3"  onClick={() => handleRecharge(299)}>Recharge</button>
-                           </div>
-                         </div>
+                            {/* Subscriptions Section */}
+                            <p className="mb-2"><strong>Subscriptions:</strong></p>
+                            <div className="d-flex justify-content-center">
+                                {val.subscriptions.map((img)=>{
+                                    return  <img 
+                                    className='rounded mx-1'
+                                    // style={{margin:'2px'}}
+                                    src={img} 
+                                    alt="JioTv" 
+                                    width={25} 
+                                    height={25} 
+                                />
+                                })}
+                               
+                                 </div>
+                           {/* Recharge button using your classes */}
+                    <button
+                        className="btn btn-primary w-100 mt-3"
+                        onClick={() => handleRecharge(val.amount,index)}  
+                    >
+                        Recharge
+                    </button>
+                      
+            {/* Conditionally render the QR code */}
+            {show === index && showQRCode && (
+                <div style={{ marginTop: '20px' }}>
+                    <h3>Scan the QR Code to Pay</h3>
+                    <QRCodeSVG 
+                        value={`upi://pay?pa=${upiId}&pn=Prepaid%20Recharge%20for%20${mobileNumber || 'Unknown'}&am=${amount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`} 
+                        size={256} 
+                        level="H" 
+                    />
+                </div>
+            )}
+              </div>
                      </div>
-                    <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">Exclusive 50% Off</span>
-                                <h4 className="mt-2 text-primary">₹333 <small><del>₹666</del></small></h4>
-                                <p>VALIDITY: <strong>70 days </strong></p>
-                                <p>DATA: <strong> 1.5 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                                <b className='text-danger'> Unlimited True 5G Data </b>
-
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                                   <img 
-                                        src="https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
-                                        alt="JioSavan" 
-                                        className='rounded mx-1'
-                                        width={27} 
-                                        height={28} 
-                                    />
-                                     <img 
-                                        src="https://toppng.com/uploads/preview/zee5-movies-tv-shows-live-tv-originals-zee5-app-download-free-11562989787ccp8imbuyt.png"
-                                        alt="ZeeTv" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    
-                                </div>
-
-                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(333)}>Recharge</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">TRENDING </span>
-                                <h4 className="mt-2 text-primary">₹399 <small><del>₹799</del></small></h4>
-                                <p>VALIDITY: <strong>84 days </strong></p>
-                                <p>DATA: <strong> 1.5 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                                <b className='text-danger'> Unlimited True 5G Data </b>
-
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png" 
-                                        alt="Netflix" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                       <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s"
-                                        alt="Prime" 
-                                        className='rounded'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                      <img 
-                                        src="https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
-                                        alt="JioSavan" 
-                                        className='rounded mx-1'
-                                        width={27} 
-                                        height={28} 
-                                    />
-                                    
-                                </div>
-
-                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(399)}>Recharge</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">POPULAR PLAN </span>
-                                <h4 className="mt-2 text-primary">₹199 <small><del>₹399</del></small></h4>
-                                <p>VALIDITY: <strong>28 days </strong></p>
-                                <p>DATA: <strong> 2.5 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                                <b className='text-danger'> Unlimited True 5G Data </b>
-
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                        
-                                      <img 
-                                        src="https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
-                                        alt="JioSavan" 
-                                        className='rounded mx-1'
-                                        width={27} 
-                                        height={28} 
-                                    />
-                                       <img 
-                                        src="https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png"
-                                        alt="SonyLIV" 
-                                        className='rounded mx-0'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                   
-                                   
-                                     <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s"
-                                        alt=""Hotstar
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                </div>
-                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(199)}>Recharge</button>
-                            </div>                      
-                        </div>
-                    </div>
-                    <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">BEST 5G PLAN </span>
-                                <h4 className="mt-2 text-primary">₹459<small> <del> ₹999</del></small></h4>
-                                <p>VALIDITY: <strong> 98 days </strong></p>
-                                <p>DATA: <strong> 2 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                                <b className='text-danger'> Unlimited True 5G Data </b>
-
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                                       <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s"
-                                        alt="Prime" 
-                                        className='rounded'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                      <img 
-                                        src="https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
-                                        alt="JioSavan" 
-                                        className='rounded mx-1'
-                                        width={27} 
-                                        height={28} 
-                                    />
-                                     
-                                    <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s"
-                                        alt="FanCode" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                      <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s"
-                                        alt=""Hotstar
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                </div>
-                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(459)}>Recharge</button>
-                            </div>                      
-                        </div>
-                    </div>
-                    <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">Special </span>
-                                <h4 className="mt-2 text-primary">₹1499<small> <del>₹3599</del></small></h4>
-                                <p>VALIDITY: <strong>365 days </strong></p>
-                                <p>DATA: <strong> 2.5 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                                <b className='text-danger'> Unlimited True 5G Data </b>
-
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                                     <img 
-                                        src="https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png" 
-                                        alt="Netflix" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                       <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s"
-                                        alt="Prime" 
-                                        className='rounded'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                      <img 
-                                        src="https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
-                                        alt="JioSavan" 
-                                        className='rounded mx-1'
-                                        width={27} 
-                                        height={28} 
-                                    />
-                                       <img 
-                                        src="https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png"
-                                        alt="SonyLIV" 
-                                        className='rounded mx-0'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                     <img 
-                                        src="https://toppng.com/uploads/preview/zee5-movies-tv-shows-live-tv-originals-zee5-app-download-free-11562989787ccp8imbuyt.png"
-                                        alt="ZeeTv" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s"
-                                        alt="FanCode" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                     <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s"
-                                        alt=""Hotstar
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                </div>
-                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(1499)}>Recharge</button>
-                            </div>                      
-                        </div>
-                    </div>
-                    <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">Exclusive 50% Off </span>
-                                <h4 className="mt-2 text-primary">₹225<small> <del> ₹449</del></small></h4>
-                                <p>VALIDITY: <strong>28 days </strong></p>
-                                <p>DATA: <strong> 3 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                                <b className='text-danger'> Unlimited True 5G Data </b>
-
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                                    
-                                    <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s"
-                                        alt="FanCode" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                     <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s"
-                                        alt=""Hotstar
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                </div>
-                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(225)}>Recharge</button>
-                            </div>                      
-                        </div>
-                    </div>
-                    <div className="col-md-5 mb-3" >
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <span className="badge bg-danger text-white">POPULAR PLAN </span>
-                                <h4 className="mt-2 text-primary">₹499<small> <del>₹1199</del></small></h4>
-                                <p>VALIDITY: <strong>84 days </strong></p>
-                                <p>DATA: <strong> 3 GB/day </strong></p>
-                                <p>Voice: <strong> Unlimited </strong></p>
-                                <p>SMS: <strong> 100/day </strong></p>
-                                <b className='text-danger'> Unlimited True 5G Data </b>
-
-                                {/* Subscriptions Section */}
-                                <p className="mb-2"><strong>Subscriptions:</strong></p>
-                                <div className="d-flex justify-content-center">
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jio_TV_logo.svg/1200px-Jio_TV_logo.svg.png" 
-                                        alt="JioTv" 
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                    <img 
-                                        src="https://upload.wikimedia.org/wikipedia/commons/1/14/Jiocinema.png" 
-                                        alt="Jio" 
-                                        className='rounded mx-1'
-                                        width={24} 
-                                        height={25} 
-                                    />
-                                      <img 
-                                        src="https://static-00.iconduck.com/assets.00/netflix-icon-icon-1024x1024-w4ni4f6d.png" 
-                                        alt="Netflix" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                       <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBWq5jCuRzx7qQ1P7WX7t1lCFMHHQB_rIVMw&s"
-                                        alt="Prime" 
-                                        className='rounded'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                      <img 
-                                        src="https://play-lh.googleusercontent.com/kl-7LqnjbT0onFUgWNrcz06oRXovfvO_GVYZoLW1jNwl8NlpFx8NCwKgXuvp1hbWdZI"
-                                        alt="JioSavan" 
-                                        className='rounded mx-1'
-                                        width={27} 
-                                        height={28} 
-                                    />
-                                     
-                                     <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3oloFahb_1dqL4CV9CKD0EL-9KfVK1QBDHQ&s"
-                                        alt="FanCode" 
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                     <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnTXuRWfQ8pt_uT7Q1001vRxQc52T09lBkaQ&s"
-                                        alt=""Hotstar
-                                        className='rounded mx-1'
-                                        width={25} 
-                                        height={25} 
-                                    />
-                                     
-                                </div>
-                                <button className="btn btn-primary w-100 mt-3" onClick={() => handleRecharge(499)}>Recharge</button>
-                            </div>                      
-                        </div>
-                    </div>
+                 </div>
+                ))
+            }
             </div>
-            <div className="text-center my-2 ">
-               
-                 <img 
-                    src="https://cdn.shopify.com/s/files/1/0900/5770/3738/files/gpayfooter.png?v=1728268793" 
-                    alt="Google Pay Festive Offer" 
-                    className="img-fluid" width='100%' height='50px'
-                />
-            </div>
+            <div className="text-center my-2 ">           
+               <img 
+                  src="https://cdn.shopify.com/s/files/1/0900/5770/3738/files/gpayfooter.png?v=1728268793" 
+                  alt="Google Pay Festive Offer" 
+                  className="img-fluid" width='100%' height='50px'
+              />
+          </div>
             </div>
     );
 };
