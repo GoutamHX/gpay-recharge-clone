@@ -4,9 +4,35 @@ import { FaUserCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import img from '../img/footerImg.png'
 const Home = () => {
-    const [time, setTime] = useState(60 * 60); // 15 minutes in seconds
+  useEffect(() => {
+    // Disable Right-click
+    const handleRightClick = (e) => {
+      e.preventDefault();
+
+    };
+// Block common Developer Tools shortcuts (F12, Ctrl+Shift+I)
+const handleKeyDown = (e) => {
+if (
+  (e.key === 'F12') || 
+  (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J'))
+) {
+  e.preventDefault();
+ 
+}
+};    
+ // Add event listeners
+ document.addEventListener('contextmenu', handleRightClick);
+ document.addEventListener('keydown', handleKeyDown);
+
+ // Cleanup event listeners when the component is unmounted
+ return () => {
+   document.removeEventListener('contextmenu', handleRightClick);
+   document.removeEventListener('keydown', handleKeyDown);
+ };
+}, []);
+    const [time, setTime] = useState(30 * 60); // 15 minutes in seconds
     const [mobileNumber, setMobileNumber] = useState(''); // Start with an empty string
-    const [sim, setSim] = useState('jio');
+    const [sim, setSim] = useState('Jio');
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
 
