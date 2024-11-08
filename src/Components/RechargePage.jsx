@@ -54,7 +54,7 @@ const RechargePage = () => {
         const upiURL = `upi://pay?pa=${upiId}&pn=Prepaid%20Recharge%20for%20${mobileNumber || ''}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
     
         // Log the generated URL for debugging
-        console.log("Generated UPI URL:", upiURL);
+        //console.log("Generated UPI URL:", upiURL);
         
         // Set the recharge amount and show the QR code
         setAmount(selectedAmount);
