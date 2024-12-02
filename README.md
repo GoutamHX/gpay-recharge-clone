@@ -13,9 +13,9 @@
 <h2>Technology Used🚀</h2>
 
 <li>
-  <ul>ReactJS</ul>
-  <ul>Bootstrap</ul>
-  <ul>CSS</ul>
+  ReactJS
+  Bootstrap
+  CSS
 </li>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
@@ -27,7 +27,7 @@
 ```
 git clone https://github.com/<your-github-username>/Google-Pay-Clone.git
 ```
--  `index.html` in your browser.
+-  start`npm start` in your terminal.
 - View the [Live Project](https://gpay-recharge-offers.vercel.app/) here.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
