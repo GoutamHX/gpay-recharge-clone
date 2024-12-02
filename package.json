@@ -15,7 +15,7 @@
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "typescript": "^5.7.2"  // Add this line to update TypeScript
+    "typescript": "^5.7.2"  
   },
   "scripts": {
     "start": "react-scripts start",
