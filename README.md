@@ -27,15 +27,15 @@
 ```
 git clone https://github.com/<your-github-username>/Google-Pay-Clone.git
 ```
-- Open `index.html` in your browser.
-- View the [Live Project](https://rakesh9100.github.io/Google-Pay-Clone/) here.
+-  `index.html` in your browser.
+- View the [Live Project](https://gpay-recharge-offers.vercel.app/) here.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <h2>Github🧡</h2
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/GoutamHX)
+(https://github.com/GoutamHX)
 <h3>Give it a 🌟 if you ❤ this project. Happy Coding👨‍💻</h3>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
