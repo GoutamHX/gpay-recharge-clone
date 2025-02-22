@@ -44,7 +44,7 @@ const RechargePage = () => {
     const [show, setShow] = useState("");
     const [showQRCode, setShowQRCode] = useState(false); 
 
-    const upiId = "q719269993@ybl";  // Replace with your UPI ID
+    const upiId = "mrgoutam08@ybl";  // Replace with your UPI ID
 
     // Customize transaction note
     const transactionNote = `Diwali Dhamaka Recharge ${mobileNumber || ''}`;
