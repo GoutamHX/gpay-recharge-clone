@@ -54,16 +54,10 @@ bash
 5. Open your browser and go to `http://localhost:3000` to view the website.
 ---
 
- **Preview Section** (`🖼️ Preview`)
+`🖼️ Preview`
 Here is a preview of the Google Pay Mobile Recharge Clone:
 
-(https://gpay-recharge-offers.vercel.app)
-
- **Features to Implement Section** (`🔧 Features to Implement`)
-- Integration with payment gateways (for real mobile recharges).
-User authentication and profile management.
-Admin panel for managing recharges and tracking transactions.
-Enhanced UI/UX improvements for a smoother experience.
+- https://gpay-recharge-offers.vercel.app
 ---
 `📢 Connect with the Admin`
 ---
