@@ -31,10 +31,10 @@ This is a clone of the **mobile recharge feature** from the Google Pay platform,
 To run this project on your local machine, follow the steps below:
 
 1. **Clone this repository** to your local machine:
-  `` git clone https://github.com/GoutamHX/google-pay-mobile-recharge-clone.git``
+  `` git clone https://github.com/GoutamHX/gpay-recharge-clone``
    
 2. **Navigate into the project folder:**
- ``  cd google-pay-mobile-recharge-clone``
+ ``  cd gpay-recharge-clone``
 
 3. **Install dependencies:**
 ``npm install``
