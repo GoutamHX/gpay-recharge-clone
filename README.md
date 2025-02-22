@@ -1,4 +1,4 @@
-# Google Pay Mobile Recharge Clone
+# 📱 Google Pay Mobile Recharge Clone
 
 This project is a **Google Pay Mobile Recharge Clone** built using **React.js**. It replicates the functionality of the Google Pay recharge feature, allowing users to perform mobile recharges seamlessly on a cloned platform.
 
@@ -8,19 +8,22 @@ This project is a **Google Pay Mobile Recharge Clone** built using **React.js**.
 
 This is a clone of the **mobile recharge feature** from the Google Pay platform, developed using React.js. The website allows users to recharge their mobile numbers by selecting the desired operator and entering the amount.
 
-### Key Features:
+### ✨ Key Features
 
-- **Mobile Recharge**: Allows users to select mobile operators and recharge their mobile numbers.
-- **User-Friendly Interface**: Clean and intuitive design with seamless navigation.
-- **React.js-based**: Built with modern web technologies like React.js for fast and responsive performance.
+- **📲 Mobile Recharge**: 📡 Users can select their mobile operator and recharge their mobile numbers.
+- **🎨 User-Friendly Interface**: 🖥️ Clean, intuitive, and responsive design for a seamless experience.
+- **⚡ Fast & Responsive**: 🚀 Built with React.js for smooth performance.
+- **🔗 React Router**: 🔄 Enables easy navigation between different pages.
+
 ---
 
 ## 🛠️ Technologies Used
 
-- **React.js**: Frontend library for building the user interface.
-- **HTML5, CSS3**: For structuring and styling the webpage.
-- **JavaScript**: Used for implementing dynamic features.
-- **React Router**: For managing navigation between different pages.
+- **⚛️ React.js** - Frontend library for building the UI.
+- **📝 HTML5, 🎨 CSS3** - Structuring and styling the webpage.
+- **📜 JavaScript** - Implements dynamic functionalities.
+- **🔗 React Router** - Manages navigation between pages.
+
 ---
 
 ## 🚀 How to Run the Project Locally
@@ -52,13 +55,17 @@ bash
 
 `🖼️ Preview`
 Here is a preview of the Google Pay Mobile Recharge Clone:
+🌍 Live Demo: [Google Pay Mobile Recharge Clone](https://gpay-recharge-offers.vercel.app )
+![Screenshot 1](https://github.com/user-attachments/assets/d8b6fee6-29d9-4a8b-93e7-5d768a5ce71a)
+![Screenshot 2](https://github.com/user-attachments/assets/5762cd86-6088-499e-8b51-074edf6db1aa)
+![Screenshot 3](https://github.com/user-attachments/assets/450b3c82-690c-49bc-adb3-6f8a6e6dd9e9)
 
-*Demo Website* :- https://gpay-recharge-offers.vercel.app 
-
-![Screenshot 2025-02-22 183129](https://github.com/user-attachments/assets/d8b6fee6-29d9-4a8b-93e7-5d768a5ce71a)
-![Screenshot 2025-02-22 183151](https://github.com/user-attachments/assets/5762cd86-6088-499e-8b51-074edf6db1aa)
-![Screenshot 2025-02-22 183306](https://github.com/user-attachments/assets/450b3c82-690c-49bc-adb3-6f8a6e6dd9e9)
 ---
 `📢 Connect with the Admin`
+- **🐙 GitHub**: [GitHub Profile](https://github.com/GoutamHX)
+- **📧 Email**: [your.email@example.com](mailto:your.email@example.com)
+- **🐦 Twitter**: [Your Twitter Handle](https://twitter.com/yourhandle)
+
 ---
-`📄 License`
+`📄 Disclaimer`
+- ⚠️ This project is developed for educational and demonstration purposes only. It is not affiliated with, endorsed by, or connected to Google Pay or Google LLC. All trademarks and copyrights belong to their respective owners. Please use this project responsibly and do not attempt to use it for real transactions.
