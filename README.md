@@ -31,23 +31,15 @@ This is a clone of the **mobile recharge feature** from the Google Pay platform,
 To run this project on your local machine, follow the steps below:
 
 1. **Clone this repository** to your local machine:
-
-   bash 
   `` git clone https://github.com/GoutamHX/google-pay-mobile-recharge-clone.git``
    
 2. **Navigate into the project folder:**
-
-bash
  ``  cd google-pay-mobile-recharge-clone``
 
 3. **Install dependencies:**
-
-bash
 ``npm install``
 
 4. **Start the development server:**
-
-bash
 ``npm start``
 
 5. Open your browser and go to `http://localhost:3000` to view the website.
@@ -55,16 +47,17 @@ bash
 
 `🖼️ Preview`
 Here is a preview of the Google Pay Mobile Recharge Clone:
-🌍 Live Demo: [Google Pay Mobile Recharge Clone](https://gpay-recharge-offers.vercel.app )
+*🌍 Live Demo:* [Google Pay Mobile Recharge Clone](https://gpay-recharge-offers.vercel.app )
+
 ![Screenshot 1](https://github.com/user-attachments/assets/d8b6fee6-29d9-4a8b-93e7-5d768a5ce71a)
 ![Screenshot 2](https://github.com/user-attachments/assets/5762cd86-6088-499e-8b51-074edf6db1aa)
 ![Screenshot 3](https://github.com/user-attachments/assets/450b3c82-690c-49bc-adb3-6f8a6e6dd9e9)
 
 ---
 `📢 Connect with the Admin`
-- **🐙 GitHub**: [GitHub Profile](https://github.com/GoutamHX)
-- **📧 Email**: [your.email@example.com](mailto:your.email@example.com)
-- **🐦 Twitter**: [Your Twitter Handle](https://twitter.com/yourhandle)
+- **🐙GitHub**: [GitHub Profile](https://github.com/GoutamHX)
+- **👤Telegram**: [Telegram](https://t.me/MR_GOUTAM08)
+- **🐦Telegram Channel**: [Join Telegram Channel For More Updates](https://t.me/MAXX_MODS)
 
 ---
 `📄 Disclaimer`
