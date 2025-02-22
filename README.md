@@ -65,9 +65,6 @@ User authentication and profile management.
 Admin panel for managing recharges and tracking transactions.
 Enhanced UI/UX improvements for a smoother experience.
 ---
-**Connect with the Admin Section** (`📢 Connect with the Admin`):
+`📢 Connect with the Admin`
 ---
-**Contributing Section** (`🤝 Contributing`):
-- Contributions are always welcome! If you'd like to contribute to this project, follow these steps:
----
-- **License Section** (`📄 License`):
+`📄 License`
