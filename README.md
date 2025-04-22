@@ -47,7 +47,7 @@ To run this project on your local machine, follow the steps below:
 
 `🖼️ Preview`
 Here is a preview of the Google Pay Mobile Recharge Clone:
-*🌍 Live Demo:* [Google Pay Mobile Recharge Clone](https://gpay-recharge-offers.vercel.app )
+*🌍 Live Demo:* [Google Pay Mobile Recharge Clone](https://gpay-recharge-clone-git-main-goutamhxs-projects.vercel.app/)
 
 ![Screenshot 1](https://github.com/user-attachments/assets/d8b6fee6-29d9-4a8b-93e7-5d768a5ce71a)
 ![Screenshot 2](https://github.com/user-attachments/assets/5762cd86-6088-499e-8b51-074edf6db1aa)
